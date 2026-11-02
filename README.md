@@ -66,4 +66,4 @@ Colab 보안 비밀(`ETHERSCAN_API_KEY`)에 등록해 사용합니다. 공개 �
 
 ## Author
 
-Dongsu Kang, Korea National Defense University
+DASE_51
