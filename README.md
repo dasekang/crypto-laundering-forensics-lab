@@ -2,34 +2,34 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dasekang/crypto-laundering-forensics-lab/blob/main/forensics_lab_colab.ipynb)
 
-공개 블록체인 데이터로 탈취 암호화폐의 자금 흐름을 추적하고, 세탁 패턴을 지표로 비교하는 교육용 실습 도구입니다.
-북한 TraderTraitor의 거래소 탈취 사건(Bybit 2025, Binance 2026)을 사례로 합니다.
+An educational toolkit for tracing stolen crypto with public blockchain data and comparing laundering patterns.
+Case studies: North Korea's TraderTraitor exchange thefts (Bybit 2025, Binance 2026).
 
-An educational toolkit for tracing stolen crypto with public blockchain data and comparing laundering patterns,
-using North Korea's TraderTraitor exchange thefts as case studies.
+> The notebook and script messages are currently in Korean. Code, variable names, and outputs (CSV, charts) are language-neutral.
 
-## 실습 구성
+## What it does
 
-| 단계 | 내용 | API 키 |
+| Step | Task | API key |
 | --- | --- | --- |
-| 1–2 | 합성 데이터로 두 세탁 패턴(빠른 분산형 vs 필 체인형) 비교 | 필요 없음 |
-| 3 | 공개된 시드 주소에서 출발해 실제 자금 흐름 추적 | Etherscan 무료 키 |
-| 4 | 지갑 모니터링 시트에 잔액·보낸 거래 수를 한 번에 채우기 | Etherscan 무료 키 |
+| 1–2 | Compare two laundering patterns (rapid dispersal vs. peel chain) on synthetic data | Not needed |
+| 3 | Trace fund flows N hops out from public seed addresses | Free Etherscan key |
+| 4 | Fill a wallet-monitoring sheet with current balances and sent-transaction counts | Free Etherscan key |
 
-위의 **Open in Colab** 버튼으로 바로 실행할 수 있습니다. 설치는 필요 없습니다.
+Click **Open in Colab** above to run it in your browser. No installation needed.
+For steps 3–4, add your key in Colab's **Secrets** (🔑 in the left sidebar) as `ETHERSCAN_API_KEY`.
 
-## 파일
+## Files
 
-| 경로 | 설명 |
+| File | Description |
 | --- | --- |
-| `forensics_lab_colab.ipynb` | Colab 실습 노트북 (스크립트 내장) |
-| `make_sample.py` | 합성 세탁 사례 생성 (가짜 데이터) |
-| `trace_flows.py` | 시드 주소에서 N-hop 자금 흐름 추적 (Etherscan API V2) |
-| `analyze.py` | 세탁 지표 계산, 비교 리포트(HTML)와 블로그용 리포트 생성 |
-| `addresses_template.txt` | 시드 주소 입력 양식 |
-| `binance_wallet_monitor_template.xlsx` | 4단계용 지갑 모니터링 시트 양식 |
+| `forensics_lab_colab.ipynb` | Colab notebook (scripts embedded) |
+| `make_sample.py` | Generates two synthetic laundering cases (fake data) |
+| `trace_flows.py` | N-hop flow tracing from seed addresses (Etherscan API V2) |
+| `analyze.py` | Laundering metrics, comparison report (HTML), and a blog-ready static report |
+| `addresses_template.txt` | Seed address input template |
+| `binance_wallet_monitor_template.xlsx` | Wallet-monitoring sheet for step 4 |
 
-로컬에서 실행하려면:
+Run locally:
 
 ```bash
 python3 make_sample.py --seed 7
@@ -39,22 +39,31 @@ export ETHERSCAN_API_KEY=your_key
 python3 trace_flows.py addresses_template.txt --hops 2
 ```
 
-## 지표
+## Metrics
 
-출구 도달 비율, 첫 출구까지 걸린 시간, T50/T90, 평균 팬아웃, 경유 지갑 비율, 최장 경유 체인, 중앙 보유 시간, 자산 구성.
-정의는 `analyze.py` 상단 주석을 참고하세요.
+Exit share, time to first exit, T50/T90 (time until 50%/90% of exit-bound funds arrive), mean fan-out,
+pass-through wallet ratio, longest pass-through chain, median holding time, and asset mix.
+Definitions are in the header comment of `analyze.py`.
 
-## 연구 윤리와 안전
+## Ethics and safety
 
-- 공개 데이터를 **조회만** 합니다. 공개된 주소로 송금하거나 상호작용하지 마세요.
-- 분석 결과는 단서일 뿐 사실 확정이 아닙니다. 특정 개인·기업을 공개적으로 지목하지 마세요.
-- API 키는 Colab 보안 비밀 또는 환경변수로만 다루고, 코드나 노트북에 적지 마세요.
-- 의미 있는 발견은 트랜잭션 해시를 근거로 수사기관(tips.fbi.gov 등)에 제보하세요.
+- Read-only. Do not send funds to or interact with any listed address.
+- Results are leads, not conclusions. Do not publicly accuse individuals or companies.
+- Keep API keys in Colab Secrets or environment variables, never in code or notebooks.
+- Report meaningful findings, with transaction hashes, to law enforcement (e.g., tips.fbi.gov).
 
-## 데모
+## Demo
 
-합성 데이터 비교 리포트: https://huggingface.co/spaces/greatkoko/crypto-laundering-patterns
+Synthetic-data comparison report: https://huggingface.co/spaces/greatkoko/crypto-laundering-patterns
 
-## 저자
+---
 
-DASE_51
+## 한국어 안내
+
+공개 블록체인 데이터로 탈취 암호화폐의 자금 흐름을 추적하고, 세탁 패턴을 지표로 비교하는 교육용 실습 도구입니다.
+위의 **Open in Colab** 버튼으로 바로 실행할 수 있습니다. 1–2단계는 API 키 없이, 3–4단계는 Etherscan 무료 키를
+Colab 보안 비밀(`ETHERSCAN_API_KEY`)에 등록해 사용합니다. 공개 데이터를 조회만 하며, 분석 결과는 단서일 뿐 사실 확정이 아닙니다.
+
+## Author
+
+Dongsu Kang, Korea National Defense University
