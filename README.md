@@ -23,26 +23,26 @@ using North Korea's TraderTraitor exchange thefts as case studies.
 | 경로 | 설명 |
 | --- | --- |
 | `forensics_lab_colab.ipynb` | Colab 실습 노트북 (스크립트 내장) |
-| `scripts/make_sample.py` | 합성 세탁 사례 생성 (가짜 데이터) |
-| `scripts/trace_flows.py` | 시드 주소에서 N-hop 자금 흐름 추적 (Etherscan API V2) |
-| `scripts/analyze.py` | 세탁 지표 계산, 비교 리포트(HTML)와 블로그용 리포트 생성 |
-| `data/addresses_template.txt` | 시드 주소 입력 양식 |
-| `data/binance_wallet_monitor_template.xlsx` | 4단계용 지갑 모니터링 시트 양식 |
+| `make_sample.py` | 합성 세탁 사례 생성 (가짜 데이터) |
+| `trace_flows.py` | 시드 주소에서 N-hop 자금 흐름 추적 (Etherscan API V2) |
+| `analyze.py` | 세탁 지표 계산, 비교 리포트(HTML)와 블로그용 리포트 생성 |
+| `addresses_template.txt` | 시드 주소 입력 양식 |
+| `binance_wallet_monitor_template.xlsx` | 4단계용 지갑 모니터링 시트 양식 |
 
 로컬에서 실행하려면:
 
 ```bash
-python3 scripts/make_sample.py --seed 7
-python3 scripts/analyze.py A=sample/case_A B=sample/case_B --out report
+python3 make_sample.py --seed 7
+python3 analyze.py A=sample/case_A B=sample/case_B --out report
 
 export ETHERSCAN_API_KEY=your_key
-python3 scripts/trace_flows.py data/addresses_template.txt --hops 2
+python3 trace_flows.py addresses_template.txt --hops 2
 ```
 
 ## 지표
 
 출구 도달 비율, 첫 출구까지 걸린 시간, T50/T90, 평균 팬아웃, 경유 지갑 비율, 최장 경유 체인, 중앙 보유 시간, 자산 구성.
-정의는 `scripts/analyze.py` 상단 주석을 참고하세요.
+정의는 `analyze.py` 상단 주석을 참고하세요.
 
 ## 연구 윤리와 안전
 
